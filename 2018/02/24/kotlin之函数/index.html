@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="普通函数kotlin中定义函数跟java不太一样，我们先看一下代码 1234567fun add(a: Int, b: Int): Int &amp;#123;    return a + b&amp;#125;fun main(args: Array&amp;lt;String&amp;gt;) &amp;#123;    println(add(1,2))&amp;#125; 这个是一个kotlin的简单函数，初次看一起来有些陌生，我们先来">
+<meta property="og:type" content="article">
+<meta property="og:title" content="kotlin之函数">
+<meta property="og:url" content="http://yoursite.com/2018/02/24/kotlin之函数/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="普通函数kotlin中定义函数跟java不太一样，我们先看一下代码 1234567fun add(a: Int, b: Int): Int &amp;#123;    return a + b&amp;#125;fun main(args: Array&amp;lt;String&amp;gt;) &amp;#123;    println(add(1,2))&amp;#125; 这个是一个kotlin的简单函数，初次看一起来有些陌生，我们先来">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-03T14:24:30.448Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="kotlin之函数">
+<meta name="twitter:description" content="普通函数kotlin中定义函数跟java不太一样，我们先看一下代码 1234567fun add(a: Int, b: Int): Int &amp;#123;    return a + b&amp;#125;fun main(args: Array&amp;lt;String&amp;gt;) &amp;#123;    println(add(1,2))&amp;#125; 这个是一个kotlin的简单函数，初次看一起来有些陌生，我们先来">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/02/24/kotlin之函数/"/>
+
+
+
+
+
+  <title>kotlin之函数 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/24/kotlin之函数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">kotlin之函数</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-24T15:13:02+08:00">
+                2018-02-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="普通函数"><a href="#普通函数" class="headerlink" title="普通函数"></a>普通函数</h1><p>kotlin中定义函数跟java不太一样，我们先看一下代码</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">add</span><span class="params">(a: <span class="type">Int</span>, b: <span class="type">Int</span>)</span></span>: <span class="built_in">Int</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> a + b</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    println(add(<span class="number">1</span>,<span class="number">2</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个是一个kotlin的简单函数，初次看一起来有些陌生，我们先来分析一下和java的方法的区别</p>
+<ul>
+<li><p>kotlin 函数的定义用到的fun 关键字</p>
+</li>
+<li><p>函数的参数是在前面，参数额类型在参数的后面，这个java是先有参数的类型然后再有参数的名字</p>
+</li>
+<li><p>函数的返回值类型是在函数的参数后面的，java的方法返回值类型是在方法声明的前面的</p>
+</li>
+<li><p>最大区别是kotlin中的函数是可以脱离类独立存在的，这个是很有意思的，在java中要现有类，然后在有方法，有的时候我们只需要定义一些方法，但是用java实现必须要定义类，例如很多的Utlis类就是这么出现的，</p>
+<p>kotlin发现了这个蛋疼的问题，所以可以在kotlin中任何地方定义方法，而不需要有类</p>
+</li>
+<li><p>模块内访问？</p>
+</li>
+</ul>
+<h2 id="默认参数"><a href="#默认参数" class="headerlink" title="默认参数"></a>默认参数</h2><p>在kotlin中我们可以在定义函数的时候给你这个函数的参数增加默认参数，这功能可以减少函数的重载</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">add</span><span class="params">(a: <span class="type">Int</span>, b: <span class="type">Int</span>=<span class="number">10</span>)</span></span>: <span class="built_in">Int</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> a + b</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    println(add(<span class="number">1</span>,<span class="number">2</span>))</span><br><span class="line">    println(add(<span class="number">1</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果</p>
+<blockquote>
+<p>3<br>11</p>
+</blockquote>
+<p>上面的例子中，当调用add(1)的时候，b就用的默认参数10，所以结果就是11</p>
+<p>大家可以思考一下，如果用java实现这个，肯定是要定义两个同名的方法，在不同的方法中实现这个具体逻辑，但是在kotlin中给函数增加默认参数就解决了，这是so easy！</p>
+<h2 id="命名参数"><a href="#命名参数" class="headerlink" title="命名参数"></a>命名参数</h2><p>命名参数这个功能特别有用，大大增加了代码的可读性，在java中当我们看一下一些方法调用参数特别的多的情况，我们就十分头疼，这些参数究竟是什么意思？一般的情况我们都是跳到方法的定义去看每个参数都是什么意思，这种情况对理解代码很是不友好，在kotlin中一切变得简单起来了，我们调用函数的时候就可以在调用函数的时候直接把参数的名称写出来，这样代码看起来变的简单的多了</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    address(name = <span class="string">"nate"</span>,street = <span class="string">"后厂村"</span>,floorNumber = <span class="number">6</span>,roomNumber = <span class="number">101</span>)</span><br><span class="line">    address(street = <span class="string">"后厂村"</span>,name = <span class="string">"nate"</span>,roomNumber = <span class="number">101</span>,floorNumber = <span class="number">6</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">address</span><span class="params">(name: <span class="type">String</span>, street: <span class="type">String</span>, floorNumber: <span class="type">Int</span>, roomNumber: <span class="type">Int</span>)</span></span> &#123;</span><br><span class="line">    println(name + <span class="string">": address is "</span> + street + <span class="string">" floolerNumber :"</span> + floorNumber + <span class="string">" room is "</span> + roomNumber)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个例子就是打印调用者地址信息，但是address 的参数太多了，为了更好的理解代码，在调用函数的收把参数的名字也加上了，这样当别的人看到这段代码的时候，就容易理解多了,<strong>注意通过参数命名方式调用函数，参数的顺序是可以任意改变的，这个点跟java也很不一样，在java中方法的参数的位置是不能改变的，在kotlin 中参数的顺序可以改变也是可以理解的，因为你在函数调用的时候指定了参数的名字，他可以自动的查找他们的对应关系</strong></p>
+<h2 id="不定数量的参数"><a href="#不定数量的参数" class="headerlink" title="不定数量的参数"></a>不定数量的参数</h2><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">sum</span><span class="params">(<span class="keyword">vararg</span> args: <span class="type">Int</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> result: <span class="built_in">Int</span> = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">data</span> <span class="keyword">in</span> args) &#123;</span><br><span class="line">        result += <span class="keyword">data</span></span><br><span class="line">    &#125;</span><br><span class="line">    println(result)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    sum(<span class="number">1</span>)</span><br><span class="line">    sum(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">    sum(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">    sum(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>实际上就是java的可变参数,java一样，可变参数只能是方法的最后一个参数，否则调用会有编译问题！！！</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">sum</span><span class="params">(<span class="keyword">vararg</span> args: <span class="type">Int</span>,name:<span class="type">String</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> result: <span class="built_in">Int</span> = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">data</span> <span class="keyword">in</span> args) &#123;</span><br><span class="line">        result += <span class="keyword">data</span></span><br><span class="line">    &#125;</span><br><span class="line">    println(result)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    <span class="comment">//编译出问题</span></span><br><span class="line">    sum(<span class="string">"s"</span>,<span class="number">1</span>)</span><br><span class="line"><span class="comment">//    sum(1,"s")</span></span><br><span class="line"><span class="comment">//    sum(1, 2)</span></span><br><span class="line"><span class="comment">//    sum(1, 2, 3)</span></span><br><span class="line"><span class="comment">//    sum(1, 2, 3, 4)</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的例子编译就有问题</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">sum</span><span class="params">(name:<span class="type">String</span>,<span class="keyword">vararg</span> args: <span class="type">Int</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> result: <span class="built_in">Int</span> = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">data</span> <span class="keyword">in</span> args) &#123;</span><br><span class="line">        result += <span class="keyword">data</span></span><br><span class="line">    &#125;</span><br><span class="line">    println(result)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    sum(<span class="string">"nate"</span>,<span class="number">1</span>)</span><br><span class="line">    sum(<span class="string">"nate"</span>,<span class="number">1</span>,<span class="number">2</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这种就没有任何问题,因为可变参数是这个方法的最后一个</p>
+<h1 id="单表达式函数"><a href="#单表达式函数" class="headerlink" title="单表达式函数"></a>单表达式函数</h1><p>如果一个函数返回表达式，那么大括号是可以省略的</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">max</span><span class="params">(a: <span class="type">Int</span>, b: <span class="type">Int</span>)</span></span>: <span class="built_in">Int</span> = <span class="keyword">if</span> (a &gt; b) a <span class="keyword">else</span> b</span><br></pre></td></tr></table></figure>
+<p>如果返回值类型可以推断出来，返回值类型也可以不用写了，可以看出kotlin在类型推断上还是相当的给力的</p>
+<h1 id="拓展函数"><a href="#拓展函数" class="headerlink" title="拓展函数"></a>拓展函数</h1><p>当我第一次看见这个拓展函数的时候，我感觉太神奇了,居然可以不用继承就可以对一个类的方法进行拓展，这个功能给我们带来了很大便捷</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    User(<span class="string">"nate"</span>, <span class="string">"password"</span>, <span class="string">"北京"</span>).driver()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span></span>(<span class="keyword">var</span> name: String, <span class="keyword">var</span> password: String, <span class="keyword">var</span> address: String)&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">sing</span><span class="params">()</span></span>&#123;</span><br><span class="line">        println(<span class="string">"<span class="subst">$&#123;name&#125;</span> 喜欢唱黄辉岁月"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> User.<span class="title">driver</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">//sing() 编译出问题</span></span><br><span class="line">    println(<span class="string">"<span class="subst">$&#123;name&#125;</span> 驾驶 桑塔纳去<span class="subst">$&#123;address&#125;</span>"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意：在拓展函数中不能方法私有的变量和方法,例如不能在拓展函数中调用sing()方法，因为sing方法是私有的，通过上面的代码我们发现，函数拓展真的很帅，对原有的代码没有一点侵入性却能增加一个的功能，如果自仔细分析kotlin编译后的代码，发现也没有那么神奇，他也是基于java实现的，我们看一下编译成的java代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// User.java</span></span><br><span class="line"><span class="keyword">import</span> kotlin.Metadata;</span><br><span class="line"><span class="keyword">import</span> kotlin.jvm.internal.Intrinsics;</span><br><span class="line"><span class="keyword">import</span> org.jetbrains.annotations.NotNull;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Metadata</span>(</span><br><span class="line">   mv = &#123;<span class="number">1</span>, <span class="number">1</span>, <span class="number">7</span>&#125;,</span><br><span class="line">   bv = &#123;<span class="number">1</span>, <span class="number">0</span>, <span class="number">2</span>&#125;,</span><br><span class="line">   k = <span class="number">1</span>,</span><br><span class="line">   d1 = &#123;<span class="string">"\u0000\u0018\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0000\n\u0002\u0010\u000e\n\u0002\b\f\n\u0002\u0010\u0002\n\u0000\u0018\u00002\u00020\u0001B\u001d\u0012\u0006\u0010\u0002\u001a\u00020\u0003\u0012\u0006\u0010\u0004\u001a\u00020\u0003\u0012\u0006\u0010\u0005\u001a\u00020\u0003¢\u0006\u0002\u0010\u0006J\b\u0010\u000f\u001a\u00020\u0010H\u0002R\u001a\u0010\u0005\u001a\u00020\u0003X\u0086\u000e¢\u0006\u000e\n\u0000\u001a\u0004\b\u0007\u0010\b\"\u0004\b\t\u0010\nR\u001a\u0010\u0002\u001a\u00020\u0003X\u0086\u000e¢\u0006\u000e\n\u0000\u001a\u0004\b\u000b\u0010\b\"\u0004\b\f\u0010\nR\u001a\u0010\u0004\u001a\u00020\u0003X\u0086\u000e¢\u0006\u000e\n\u0000\u001a\u0004\b\r\u0010\b\"\u0004\b\u000e\u0010\n¨\u0006\u0011"</span>&#125;,</span><br><span class="line">   d2 = &#123;<span class="string">"LUser;"</span>, <span class="string">""</span>, <span class="string">"name"</span>, <span class="string">""</span>, <span class="string">"password"</span>, <span class="string">"address"</span>, <span class="string">"(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V"</span>, <span class="string">"getAddress"</span>, <span class="string">"()Ljava/lang/String;"</span>, <span class="string">"setAddress"</span>, <span class="string">"(Ljava/lang/String;)V"</span>, <span class="string">"getName"</span>, <span class="string">"setName"</span>, <span class="string">"getPassword"</span>, <span class="string">"setPassword"</span>, <span class="string">"sing"</span>, <span class="string">""</span>, <span class="string">"production sources for module kotlin"</span>&#125;</span><br><span class="line">)</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">   <span class="meta">@NotNull</span></span><br><span class="line">   <span class="keyword">private</span> String name;</span><br><span class="line">   <span class="meta">@NotNull</span></span><br><span class="line">   <span class="keyword">private</span> String password;</span><br><span class="line">   <span class="meta">@NotNull</span></span><br><span class="line">   <span class="keyword">private</span> String address;</span><br><span class="line">	<span class="comment">//方法都是final</span></span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">sing</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      String var1 = <span class="string">""</span> + <span class="keyword">this</span>.name + <span class="string">" 喜欢唱黄辉岁月"</span>;</span><br><span class="line">      System.out.println(var1);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@NotNull</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(@NotNull String var1)</span> </span>&#123;</span><br><span class="line">      Intrinsics.checkParameterIsNotNull(var1, <span class="string">"&lt;set-?&gt;"</span>);</span><br><span class="line">      <span class="keyword">this</span>.name = var1;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@NotNull</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> String <span class="title">getPassword</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.password;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">setPassword</span><span class="params">(@NotNull String var1)</span> </span>&#123;</span><br><span class="line">      Intrinsics.checkParameterIsNotNull(var1, <span class="string">"&lt;set-?&gt;"</span>);</span><br><span class="line">      <span class="keyword">this</span>.password = var1;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@NotNull</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> String <span class="title">getAddress</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.address;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">setAddress</span><span class="params">(@NotNull String var1)</span> </span>&#123;</span><br><span class="line">      Intrinsics.checkParameterIsNotNull(var1, <span class="string">"&lt;set-?&gt;"</span>);</span><br><span class="line">      <span class="keyword">this</span>.address = var1;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">(@NotNull String name, @NotNull String password, @NotNull String address)</span> </span>&#123;</span><br><span class="line">      Intrinsics.checkParameterIsNotNull(name, <span class="string">"name"</span>);</span><br><span class="line">      Intrinsics.checkParameterIsNotNull(password, <span class="string">"password"</span>);</span><br><span class="line">      Intrinsics.checkParameterIsNotNull(address, <span class="string">"address"</span>);</span><br><span class="line">      <span class="keyword">super</span>();</span><br><span class="line">      <span class="keyword">this</span>.name = name;</span><br><span class="line">      <span class="keyword">this</span>.password = password;</span><br><span class="line">      <span class="keyword">this</span>.address = address;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Function_04Kt.java</span></span><br><span class="line"><span class="keyword">import</span> kotlin.Metadata;</span><br><span class="line"><span class="keyword">import</span> kotlin.jvm.internal.Intrinsics;</span><br><span class="line"><span class="keyword">import</span> org.jetbrains.annotations.NotNull;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Metadata</span>(</span><br><span class="line">   mv = &#123;<span class="number">1</span>, <span class="number">1</span>, <span class="number">7</span>&#125;,</span><br><span class="line">   bv = &#123;<span class="number">1</span>, <span class="number">0</span>, <span class="number">2</span>&#125;,</span><br><span class="line">   k = <span class="number">2</span>,</span><br><span class="line">   d1 = &#123;<span class="string">"\u0000\u001a\n\u0000\n\u0002\u0010\u0002\n\u0000\n\u0002\u0010\u0011\n\u0002\u0010\u000e\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0000\u001a\u0019\u0010\u0000\u001a\u00020\u00012\f\u0010\u0002\u001a\b\u0012\u0004\u0012\u00020\u00040\u0003¢\u0006\u0002\u0010\u0005\u001a\n\u0010\u0006\u001a\u00020\u0001*\u00020\u0007¨\u0006\b"</span>&#125;,</span><br><span class="line">   d2 = &#123;<span class="string">"main"</span>, <span class="string">""</span>, <span class="string">"args"</span>, <span class="string">""</span>, <span class="string">""</span>, <span class="string">"([Ljava/lang/String;)V"</span>, <span class="string">"driver"</span>, <span class="string">"LUser;"</span>, <span class="string">"production sources for module kotlin"</span>&#125;</span><br><span class="line">)</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Function_04Kt</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(@NotNull String[] args)</span> </span>&#123;</span><br><span class="line">      Intrinsics.checkParameterIsNotNull(args, <span class="string">"args"</span>);</span><br><span class="line">      driver(<span class="keyword">new</span> User(<span class="string">"nate"</span>, <span class="string">"password"</span>, <span class="string">"北京"</span>));</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//这个就是拓展方法的实现</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">driver</span><span class="params">(@NotNull User $receiver)</span> </span>&#123;</span><br><span class="line">      Intrinsics.checkParameterIsNotNull($receiver, <span class="string">"$receiver"</span>);</span><br><span class="line">      String var1 = <span class="string">""</span> + $receiver.getName() + <span class="string">" 驾驶 桑塔纳去"</span> + $receiver.getAddress();</span><br><span class="line">      System.out.println(var1);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 我们来分析一下java，其实在kotlin中定义的拓展方法在java中就是一个static的静态方法，该方法的第一个参数就是拓展类的对象，之前我们说过在拓展方法中没法访问私有的变量也就是这个原因了，当你看到编译后的源代码发现也没有什么稀奇的东西，但是这种拓展函数在给我编写的代码的时候带来极大的便捷并且也很优雅，我们来思考一下拓展函数的应用场景</p>
+<ul>
+<li><p>对一个已经有的库，但是没有源代码的情况进行拓展</p>
+</li>
+<li><p>去除掉一些utils方法</p>
+<p>​</p>
+</li>
+</ul>
+<h1 id="局部函数"><a href="#局部函数" class="headerlink" title="局部函数"></a>局部函数</h1><p>局部函数这个在java中是没有的，就是可以在函数里面定义函数</p>
+<p>作用：让后函数的内部逻辑更加紧密，在java中如果一个方法内容过长了的情况，我们往往会这较大的方法进行拆分，拆分出对个较小的方法，但是这些方法可能不是通用，可能就是一次性代码，这个如果定义在类中有的多余，但是又没有别的地方可以定义这些方法，在kotlin中我们可以在一个函数内定义一些和自己函数调用相关的函数</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">authentication</span><span class="params">(user:<span class="type">User</span>,name: <span class="type">String</span>, password: <span class="type">String</span>)</span></span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (name.equals(<span class="string">""</span>) || !name.equals(user.name)) &#123;</span><br><span class="line">        <span class="keyword">throw</span> IllegalArgumentException(<span class="string">"name is invalidate"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (password.equals(<span class="string">""</span>) || !password.equals(user.password)) &#123;</span><br><span class="line">        <span class="keyword">throw</span> IllegalArgumentException(<span class="string">"password is invalidate"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    println(<span class="string">"验证成功"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这是一个认证函数，在这个函数中我需要校验参数的合法性，一般我在编写方法的时候都会校验参数的，因为外来传递的信息是不控的，可能会传递一些违法的数据，这段代码的校验逻辑也很简单，但是如果函数的参数比较多挨个校验也是比较蛮麻烦的事情，我们可以在这个方法中定义的内部函数去处理相关校验逻辑</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    authentication(User(<span class="string">"nate"</span>,<span class="string">"123456"</span>,<span class="string">"北京"</span>),<span class="string">"nate"</span>,<span class="string">"12346"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">authentication</span><span class="params">(user:<span class="type">User</span>,name: <span class="type">String</span>, password: <span class="type">String</span>)</span></span> &#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">validate</span><span class="params">(intput:<span class="type">String</span>,value:<span class="type">String</span>)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(intput.equals(<span class="string">""</span>)||!intput.equals(value))&#123;</span><br><span class="line">            <span class="keyword">throw</span> IllegalArgumentException(<span class="string">"input is <span class="subst">$&#123;intput&#125;</span> "</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        println(<span class="string">"address is <span class="subst">$&#123;user.address&#125;</span>"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    validate(user.name,name)</span><br><span class="line">    validate(user.password,password)</span><br><span class="line">    println(<span class="string">"验证成功"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span></span>(<span class="keyword">var</span> name:String,<span class="keyword">var</span> password: String,<span class="keyword">var</span> address:String)</span><br></pre></td></tr></table></figure>
+<p> 我们在authentication 函数又定义了一个函数validate 用于校验输入的是否合法，这总方式就是内部函数，在java是根本无法实现这个功能，另外一点局部函数是可以访问外部方法中的任何参数的，例如在我们validate函数中就访问了User的address 属性。</p>
+<h1 id="高阶函数"><a href="#高阶函数" class="headerlink" title="高阶函数"></a>高阶函数</h1><p>定义:接收一个函数作为参数或者返回函数的函数</p>
+<p>许多人第一次接触高阶函数肯定是一脸懵逼，一个函数的参数居然还能是函数，这么神奇吗？先别搞太多的概念了，我们开始先开一段代码，无码无真相</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(arg: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//正常写法，传递一个lambda</span></span><br><span class="line">    runAsync(&#123; println(Thread.currentThread().name) &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="comment">//移除无用的括号</span></span><br><span class="line">    runAsync() &#123;</span><br><span class="line">        println(Thread.currentThread().name)</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//最简单的写法</span></span><br><span class="line">    runAsync &#123;</span><br><span class="line">        println(Thread.currentThread().name)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">runAsync</span><span class="params">(work: ()</span></span> -&gt; <span class="built_in">Unit</span>) &#123;</span><br><span class="line">    Thread &#123;</span><br><span class="line">        work()</span><br><span class="line">    &#125;.start()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  上面的方法很简单就是定义一个runAsync 函数，在这个函数中开启一个线程去回调一个wo’rk方法，这个例子很简单，但是估计有很多人看起来很奇怪，这是什么写法</p>
+<ul>
+<li>我们在这个代码中定义了一个高阶函数名字是runAsync，为什么说他是一个高阶函数呢？因为这个函数又的一个参数是另外一个函数work，这函数的类型是() -&gt; Unit,参数是空，返回值也是空的，只要符合这个类型的函数都可以传递进来</li>
+<li>我们先看第一种写法{ println(Thread.currentThread().name) } 这是一个函数表达式，一个函数的表达必须要{} 作为声明,我们在这里声明了一个参数为空返回值也是空的函数</li>
+<li>第二种写法，如果函数的最后一个参数是一个函数的话，可以将作为参数的函数移到圆括号外</li>
+<li>第三种写法，如果函数是唯一的参数，还可以去掉圆括号</li>
+</ul>
+<p>​      由此可以lamda的写法有很多，也很灵活，我们一般都是按照第三种写法去写的，从java转过来的人看第三种写法很不舒服，看着像是个方法的定义但是方法名字后面又没有(),看着像一段代码片块，但是在代码块前面还有 runAsync {这个很是不舒服，其实只要习惯就好了，我刚看见的时候也很不舒服！</p>
+<p>我们看一下另外一个例子</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(arg: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line"></span><br><span class="line">    filter(<span class="number">1</span>) &#123; <span class="keyword">data</span> -&gt;</span><br><span class="line">        <span class="keyword">data</span> &gt; <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    filter(<span class="number">1</span>) &#123;</span><br><span class="line">        it &gt; <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//正常写法，传递一个lambda</span></span><br><span class="line">    runAsync(&#123; println(Thread.currentThread().name) &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="comment">//移除无用的括号</span></span><br><span class="line">    runAsync() &#123;</span><br><span class="line">        println(Thread.currentThread().name)</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//最简单的写法</span></span><br><span class="line">    runAsync &#123;</span><br><span class="line">        println(Thread.currentThread().name)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">filter</span><span class="params">(<span class="keyword">data</span>: <span class="type">Int</span>, func: (<span class="type">Int</span>)</span></span> -&gt; <span class="built_in">Boolean</span>) &#123;</span><br><span class="line">    println(func(<span class="keyword">data</span>))</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">runAsync</span><span class="params">(work: ()</span></span> -&gt; <span class="built_in">Unit</span>) &#123;</span><br><span class="line">    Thread &#123;</span><br><span class="line">        work()</span><br><span class="line">    &#125;.start()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们看一下filter这个函数，就是过滤函数，我们把过滤的规则给暴露出来了声明成一个函数，具体什么规则由调用方自己决定，这样这个方法变的很灵活了，可以实现任何规则的过滤</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(arg: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line"></span><br><span class="line">    filter(<span class="number">1</span>) &#123; <span class="keyword">data</span> -&gt;</span><br><span class="line">        <span class="keyword">data</span> &gt; <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    filter(<span class="number">1</span>) &#123;</span><br><span class="line">        it &gt; <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p> 这两种都是lambda表达式，只不过第二种定义更简单，但是、但是很重要 <strong>it</strong>是什么呢？是一个变量吗？但是这个变量在哪里定义的呢？似乎没有看见，下面我来解答一下吧，在kotlin中如果一个函数的参数是一个函数并且这个只有一个参数，这个参数可以省略(连同 <code>-&gt;</code>)在函数中可以用it表示这个参数，在上面的例子中这个it 就是 func: (Int) -&gt; Boolean 中的参数，对于实际代码来说这个it就是1</p>
+<h3 id="下划线用于未使用的变量-自-1-1-起"><a href="#下划线用于未使用的变量-自-1-1-起" class="headerlink" title="下划线用于未使用的变量(自 1.1 起)"></a>下划线用于未使用的变量(自 1.1 起)</h3><p>如果 lambda 表达式的参数未使用，那么可以用下划线取代其名称：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(arg: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    filter(<span class="number">1</span>) &#123; _ -&gt;</span><br><span class="line">        <span class="comment">//编译出问题</span></span><br><span class="line"><span class="comment">//        println(it)</span></span><br><span class="line">        <span class="keyword">return</span><span class="symbol">@filter</span> <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    filter(<span class="number">1</span>) &#123; <span class="keyword">data</span> -&gt;</span><br><span class="line">        <span class="keyword">data</span> &gt; <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    filter(<span class="number">1</span>) &#123;</span><br><span class="line">        it &gt; <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//正常写法，传递一个lambda</span></span><br><span class="line">    runAsync(&#123; println(Thread.currentThread().name) &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="comment">//移除无用的括号</span></span><br><span class="line">    runAsync() &#123;</span><br><span class="line">        println(Thread.currentThread().name)</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//最简单的写法</span></span><br><span class="line">    runAsync &#123;</span><br><span class="line">        println(Thread.currentThread().name)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">filter</span><span class="params">(<span class="keyword">data</span>: <span class="type">Int</span>, func: (<span class="type">Int</span>)</span></span> -&gt; <span class="built_in">Boolean</span>) &#123;</span><br><span class="line">    println(func(<span class="keyword">data</span>))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">runAsync</span><span class="params">(work: ()</span></span> -&gt; <span class="built_in">Unit</span>) &#123;</span><br><span class="line">    Thread &#123;</span><br><span class="line">        work()</span><br><span class="line">    &#125;.start()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面例子中   println(it) 这个行代码注释打开就无法编译，因为我们在调用的时候已经指明这个参数不能使用的（_）</p>
+<p>​    通过上面的例子我们应该对lambda有一定的了解了，知道如何去定义一个lambda表达式，下面我们来具体的看一下上面    lambda表达式</p>
+<p> <strong>我们先说一下lambda表达式有什么作用呢？</strong></p>
+<p>就以这个filter函数为例，如果用java语言去实现filter功能，我们肯定是在这个方法的最后定义一个接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Callback</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">filter</span><span class="params">(<span class="keyword">int</span> data)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后在这个fitler函数中调用callback的这个接口的filter方法，然后在调用filter的时候创建一个匿名的内部类Callback，代码写起来变的很难看</p>
+<p>在koltin中，我们可以用lambda表达式去代替一个接口或者抽象类的定义，进而也避免了类的实现部分，所以它是非常有用的，有这时候我可能就想知道一个事件的回调，为他定义一个接口或者实现类成本有点大，在koltin中定义一个函数就可以了，Kotlin语言的另一个出色方面是，允许用lambda表达式编写接口，这样可以巨大地简化代码</p>
+<h3 id="Lambda-表达式语法"><a href="#Lambda-表达式语法" class="headerlink" title="Lambda 表达式语法"></a>Lambda 表达式语法</h3><p>Lambda 表达式的完整语法形式，即函数类型的字面值如下：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> sum = &#123; x: <span class="built_in">Int</span>, y: <span class="built_in">Int</span> -&gt; x + y &#125;</span><br></pre></td></tr></table></figure>
+<p>lambda 表达式总是被<strong>大括号</strong>括着，<br>完整语法形式的参数声明放在括号内，并有可选的类型标注，<br>函数体跟在一个 <code>-&gt;</code> 符号之后。如果推断出的该 lambda 的返回类型不是 <code>Unit</code>，那么该 lambda 主体中的最后一个(或可能是单个)表达式会视为返回值。</p>
+<p>如果我们把所有可选标注都留下，看起来如下：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> sum: (<span class="built_in">Int</span>, <span class="built_in">Int</span>) -&gt; <span class="built_in">Int</span> = &#123; x, y -&gt; x + y &#125;</span><br></pre></td></tr></table></figure>
+<p>一个 lambda 表达式只有一个参数是很常见的。<br>如果 Kotlin 可以自己计算出签名，它允许我们不声明唯一的参数，并且将隐含地<br>为我们声明其名称为 <code>it</code>：</p>
+<h3 id="Lambda表达式如何调用？"><a href="#Lambda表达式如何调用？" class="headerlink" title="Lambda表达式如何调用？"></a><strong>Lambda表达式如何调用？</strong></h3><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(arg: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> info = &#123; name: String, age: <span class="built_in">Int</span> -&gt;</span><br><span class="line">        print(<span class="string">"hello lambda <span class="subst">$&#123;name&#125;</span>"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    info(<span class="string">"nate"</span>,<span class="number">2</span>)</span><br><span class="line">    info.invoke(<span class="string">"nate"</span>,<span class="number">2</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果定义了一个lambda表达式给一个变量，可以调用这个变量的invoke方法，参数是lambda表达式定义的参数</p>
+<h3 id="Lambda-的应用"><a href="#Lambda-的应用" class="headerlink" title="Lambda 的应用"></a>Lambda 的应用</h3><p>在android中每个view都有click事件，我们一般的做法就是创建一个匿名的内部类，这种写法代码看起来特别的糟糕！！</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">view.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> void onClick(View v) &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>在kotlin中我们有很多种写法，我先看一个简单的写法</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">textView.setOnClickListener(<span class="keyword">object</span> : View.OnClickListener &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onClick</span><span class="params">(v: <span class="type">View</span>?)</span></span> &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>这种写法跟上面没什么区别，只是用了一个object关键字，这个地方我们创建一个对象，这个对象继承View.OnClickListener ，代码看起来也不是很友好，下面我们来一个更简单的写法-&gt;lambda</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">textView.setOnClickListener &#123;</span><br><span class="line">    println(it)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 这种写法很简单，我们去掉了讨厌的匿名内部类，代码也很简洁，在kotlin中接口和抽象类都可以用lambda重写，我们再看一个例子</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">isLollipopOrAbove</span><span class="params">(func: ()</span></span> -&gt; <span class="built_in">Unit</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (Build.VERSION.SDK_INT &gt; Build.VERSION_CODES.LOLLIPOP) &#123;</span><br><span class="line">        func()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个函数作用很简单，就是在API版本&gt;5.0的时候执行一段代码，想想我们之前用java实现，还需要在这个地方定义一个接口，其实我就想执行一段代码，为此我要先定义一个接口，还是很麻烦的，在kotlin中简单得了，直接定义一个高阶函数就OK，代码调用执行如下</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">isLollipopOrAbove &#123;</span><br><span class="line">    println(<span class="string">"call in API &gt;LOLLIPOP "</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>代码多么简单！！！</p>
+<p>引用</p>
+<blockquote>
+<p><a href="https://marcin-chwedczuk.github.io/lambda-expressions-in-kotlin" target="_blank" rel="noopener">https://marcin-chwedczuk.github.io/lambda-expressions-in-kotlin</a></p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/22/kotlin之Object/" rel="next" title="kotlin之Object">
+                <i class="fa fa-chevron-left"></i> kotlin之Object
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#普通函数"><span class="nav-number">1.</span> <span class="nav-text">普通函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#默认参数"><span class="nav-number">1.1.</span> <span class="nav-text">默认参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命名参数"><span class="nav-number">1.2.</span> <span class="nav-text">命名参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不定数量的参数"><span class="nav-number">1.3.</span> <span class="nav-text">不定数量的参数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#单表达式函数"><span class="nav-number">2.</span> <span class="nav-text">单表达式函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#拓展函数"><span class="nav-number">3.</span> <span class="nav-text">拓展函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#局部函数"><span class="nav-number">4.</span> <span class="nav-text">局部函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#高阶函数"><span class="nav-number">5.</span> <span class="nav-text">高阶函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#下划线用于未使用的变量-自-1-1-起"><span class="nav-number">5.0.1.</span> <span class="nav-text">下划线用于未使用的变量(自 1.1 起)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lambda-表达式语法"><span class="nav-number">5.0.2.</span> <span class="nav-text">Lambda 表达式语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lambda表达式如何调用？"><span class="nav-number">5.0.3.</span> <span class="nav-text">Lambda表达式如何调用？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lambda-的应用"><span class="nav-number">5.0.4.</span> <span class="nav-text">Lambda 的应用</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
